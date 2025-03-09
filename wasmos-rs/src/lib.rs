@@ -34,7 +34,7 @@ fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, EvalexprError> {
     let mut the_math: Vec<Coordinate> = Vec::new();
     for x in 0..100 {
         let context = context_map! { "x" => int x }?;
-        let y = operator_tree.eval_float_with_context(&context)?;
+        let y = operator_tree.eval_number_with_context(&context)?;
         the_math.push(Coordinate { x: x as f64, y });
     }
 
