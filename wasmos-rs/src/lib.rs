@@ -2,6 +2,7 @@ mod utils;
 
 use evalexpr::*;
 use wasm_bindgen::prelude::*;
+use web_sys::console;
 
 #[wasm_bindgen]
 pub struct Coordinate {
@@ -27,11 +28,6 @@ impl Coordinate {
     }
 }
 
-#[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
-}
-
 fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, EvalexprError> {
     let operator_tree = evalexpr::build_operator_tree(equation)?;
 
@@ -49,6 +45,9 @@ fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, EvalexprError> {
 pub fn compute(equation: &str) -> Vec<Coordinate> {
     match do_the_math(equation) {
         Ok(points) => points,
-        Err(error) => panic!("{}", error),
+        Err(error) => {
+            console::log_1(&error.to_string().into());
+            Vec::new()
+        }
     }
 }
