@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { TextField } from '@mui/material'
+
 import { compute, Coordinate } from "../public/wasm/wasmos.js";
 
-import './App.css'
+import './App.css';
+import InputBar from './components/InputBar.js';
+import { Box } from '@mui/material';
 
 function App() {
   const [coords, setCoords] = React.useState<Coordinate[]>([]);
@@ -20,12 +22,13 @@ function App() {
   return (
     <>
       <h1>Wasmos</h1>
-      <TextField
-        id="text-field"
-        label="Input expression"
-        variant="outlined"
-        onChange={(event) => graph(event.target.value)}
-      />
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
+        <InputBar></InputBar>
+      </Box>
     </>
   )
 }
