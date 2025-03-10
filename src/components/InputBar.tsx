@@ -18,8 +18,8 @@ function InputBar({ onChangeCallback }: InputBarProps) {
   ]);
 
   function newInput() {
-    console.log("clicked!");
-    inputs.push(
+    setInputs(prevInputs => [
+      ...prevInputs,
       <TextField
         id={`expression-input-${inputs.length}`}
         label="Input expression"
@@ -27,8 +27,7 @@ function InputBar({ onChangeCallback }: InputBarProps) {
         key={inputs.length}
         onChange={onChangeCallback}
       />
-    )
-    setInputs(inputs);
+    ]);
   }
 
   return (
