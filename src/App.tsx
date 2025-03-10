@@ -1,3 +1,5 @@
+import { axisClasses } from '@mui/x-charts/ChartsAxis';
+import { ScatterChart, ScatterChartProps } from '@mui/x-charts/ScatterChart';
 import * as React from 'react';
 
 import { compute, Coordinate } from "../public/wasm/wasmos.js";
@@ -19,6 +21,19 @@ function App() {
     }
   }
 
+  const chartSetting: Omit<ScatterChartProps, "series"> = {
+    xAxis: [{ label: "x" }],
+    yAxis: [{ label: "y" }],
+    grid: { vertical: true, horizontal: true },
+    sx: {
+      [`.${axisClasses.left} .${axisClasses.label}`]: {
+        transform: 'translate(-10px, 0)',
+      },
+    },
+    width: 900,
+    height: 600,
+  };
+
   return (
     <>
       <h1>Wasmos</h1>
@@ -30,6 +45,15 @@ function App() {
         <InputBar
           onChangeCallback={(event) => graph(event.target.value)}
         ></InputBar>
+        <ScatterChart
+          series={[
+            {
+              label: 'Series A',
+              data: coords.map((coord, index) => ({ x: coord.x, y: coord.y, id: index })),
+            },
+          ]}
+          {...chartSetting}
+        />
       </Box >
     </>
   )
