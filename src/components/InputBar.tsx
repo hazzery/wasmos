@@ -2,14 +2,18 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 
-function InputBar() {
+interface InputBarProps {
+  onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+}
+
+function InputBar({ onChangeCallback }: InputBarProps) {
   let [inputs, setInputs] = React.useState<React.JSX.Element[]>([
     <TextField
       id="expression-input-0"
       label="Input expression"
       variant="outlined"
       key={0}
-    // onChange={(event) => graph(event.target.value)}
+      onChange={onChangeCallback}
     />
   ]);
 
@@ -21,7 +25,7 @@ function InputBar() {
         label="Input expression"
         variant="outlined"
         key={inputs.length}
-      // onChange={(event) => graph(event.target.value)}
+        onChange={onChangeCallback}
       />
     )
     setInputs(inputs);
@@ -43,7 +47,6 @@ function InputBar() {
           id="disabled-input"
           label="New expression"
           variant="outlined"
-        // onChange={(event) => graph2(event.target.value)}
         />
       </Paper >
     </>

@@ -10,7 +10,7 @@ function App() {
   const [coords, setCoords] = React.useState<Coordinate[]>([]);
 
   function graph(expression: string) {
-    console.log(`Asked to compute ${expression}`)
+    console.log(`Asked to compute ${expression}`);
     let coords = compute(expression);
     setCoords(coords);
 
@@ -27,8 +27,10 @@ function App() {
           display: "flex",
         }}
       >
-        <InputBar></InputBar>
-      </Box>
+        <InputBar
+          onChangeCallback={(event) => graph(event.target.value)}
+        ></InputBar>
+      </Box >
     </>
   )
 }
