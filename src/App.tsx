@@ -12,16 +12,18 @@ import InputBar from './components/InputBar.js';
 function App() {
   const [series, setSeries] = React.useState<Omit<ScatterSeriesType, "type">[]>([]);
 
-  function graph(expression: string) {
+  function graph(expression: string, index: number) {
     let coordinates = compute(expression);
 
-    setSeries(previousSeries => [
-      ...previousSeries,
-      {
+    setSeries(previousSeries => {
+      let newSeries = [...previousSeries];
+      newSeries[index] = {
         label: `Series ${series.length}`,
         data: coordinates.map((coordinate, index) => ({ x: coordinate.x, y: coordinate.y, id: index })),
-      },
-    ]);
+      };
+
+      return newSeries;
+    });
   }
 
 
@@ -34,7 +36,7 @@ function App() {
         }}
       >
         <InputBar
-          onChangeCallback={(event) => graph(event.target.value)}
+          onChangeCallback={(event, index) => graph(event.target.value, index)}
         ></InputBar>
         <ScatterChart
           series={series}

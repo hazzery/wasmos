@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 
 interface InputBarProps {
-  onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => void
 }
 
 function InputBar({ onChangeCallback }: InputBarProps) {
@@ -13,7 +13,7 @@ function InputBar({ onChangeCallback }: InputBarProps) {
       label="Input expression"
       variant="outlined"
       key={0}
-      onChange={onChangeCallback}
+      onChange={(event) => onChangeCallback(event, 0)}
     />
   ]);
 
@@ -25,7 +25,7 @@ function InputBar({ onChangeCallback }: InputBarProps) {
         label="Input expression"
         variant="outlined"
         key={inputs.length}
-        onChange={onChangeCallback}
+        onChange={(event) => onChangeCallback(event, inputs.length)}
       />
     ]);
   }
