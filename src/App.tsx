@@ -13,7 +13,7 @@ function App() {
   const [series, setSeries] = React.useState<Omit<ScatterSeriesType, "type">[]>([]);
 
   function graph(expression: string, index: number) {
-    let coordinates = compute(expression);
+    let coordinates = expression !== "" ? compute(expression) : [];
 
     setSeries(previousSeries => {
       let newSeries = [...previousSeries];
