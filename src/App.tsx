@@ -1,38 +1,29 @@
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import { ScatterChart, ScatterChartProps } from '@mui/x-charts/ScatterChart';
+import { ScatterChart } from '@mui/x-charts/ScatterChart';
+import { ScatterSeriesType } from '@mui/x-charts/models/seriesType/scatter';
 import * as React from 'react';
 
-import { compute, Coordinate } from "../public/wasm/wasmos.js";
+import { compute } from "../public/wasm/wasmos.js";
 
+import { Box } from '@mui/material';
 import './App.css';
 import InputBar from './components/InputBar.js';
-import { Box } from '@mui/material';
 
 function App() {
-  const [coords, setCoords] = React.useState<Coordinate[]>([]);
+  const [series, setSeries] = React.useState<Omit<ScatterSeriesType, "type">[]>([]);
 
   function graph(expression: string) {
-    console.log(`Asked to compute ${expression}`);
-    let coords = compute(expression);
-    setCoords(coords);
+    let coordinates = compute(expression);
 
-    for (let coord of coords) {
-      console.log(`(${coord.x}, ${coord.y})`);
-    }
+    setSeries(previousSeries => [
+      ...previousSeries,
+      {
+        label: `Series ${series.length}`,
+        data: coordinates.map((coordinate, index) => ({ x: coordinate.x, y: coordinate.y, id: index })),
+      },
+    ]);
   }
 
-  const chartSetting: Omit<ScatterChartProps, "series"> = {
-    xAxis: [{ label: "x" }],
-    yAxis: [{ label: "y" }],
-    grid: { vertical: true, horizontal: true },
-    sx: {
-      [`.${axisClasses.left} .${axisClasses.label}`]: {
-        transform: 'translate(-10px, 0)',
-      },
-    },
-    width: 900,
-    height: 600,
-  };
 
   return (
     <>
@@ -46,13 +37,17 @@ function App() {
           onChangeCallback={(event) => graph(event.target.value)}
         ></InputBar>
         <ScatterChart
-          series={[
-            {
-              label: 'Series A',
-              data: coords.map((coord, index) => ({ x: coord.x, y: coord.y, id: index })),
+          series={series}
+          xAxis={[{ label: "x" }]}
+          yAxis={[{ label: "y" }]}
+          grid={{ vertical: true, horizontal: true }}
+          sx={{
+            [`.${axisClasses.left} .${axisClasses.label}`]: {
+              transform: 'translate(-10px, 0)',
             },
-          ]}
-          {...chartSetting}
+          }}
+          width={900}
+          height={600}
         />
       </Box >
     </>
