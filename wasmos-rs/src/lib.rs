@@ -5,6 +5,7 @@ use wasm_bindgen::prelude::*;
 use web_sys::console;
 
 const GRAPH_RESOLUTION: usize = 100;
+
 #[wasm_bindgen]
 pub struct Coordinate {
     x: f64,
