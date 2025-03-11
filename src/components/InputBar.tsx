@@ -10,7 +10,7 @@ function InputBar({ onChangeCallback }: InputBarProps) {
   let [inputs, setInputs] = React.useState<React.JSX.Element[]>([
     <TextField
       id="expression-input-0"
-      label="Input expression"
+      label="Series 0"
       variant="outlined"
       key={0}
       onChange={(event) => onChangeCallback(event, 0)}
@@ -22,7 +22,7 @@ function InputBar({ onChangeCallback }: InputBarProps) {
       ...prevInputs,
       <TextField
         id={`expression-input-${inputs.length}`}
-        label="Input expression"
+        label={`Series ${inputs.length}`}
         variant="outlined"
         key={inputs.length}
         onChange={(event) => onChangeCallback(event, inputs.length)}
