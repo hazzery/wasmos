@@ -1,6 +1,5 @@
 mod utils;
 
-use evalexpr::*;
 use wasm_bindgen::prelude::*;
 use web_sys::console;
 
@@ -30,15 +29,17 @@ impl Coordinate {
     }
 }
 
-fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, EvalexprError> {
+fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, evalexpr::EvalexprError> {
     let operator_tree = evalexpr::build_operator_tree(equation)?;
 
     let mut the_math: Vec<Coordinate> = Vec::new();
+
+    #[allow(clippy::cast_possible_truncation, clippy::cast_possible_wrap)]
     let upper_limit = GRAPH_RESOLUTION as i32 / 2;
     for x in -upper_limit..upper_limit {
-        let context = context_map! { "x" => int x }?;
+        let context = evalexpr::context_map! { "x" => int x }?;
         let y = operator_tree.eval_number_with_context(&context)?;
-        the_math.push(Coordinate { x: x as f64, y });
+        the_math.push(Coordinate { x: f64::from(x), y });
     }
 
     Ok(the_math)

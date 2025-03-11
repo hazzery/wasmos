@@ -27,3 +27,11 @@ wasm-bindgen-test = "0.3.34"
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
+
+[lints.clippy]
+pedantic = "warn"
+perf = "warn"
+complexity = "warn"
+suspicious = "warn"
+style = "warn"
+must_use_candidate = { level = "allow", priority = 10 }
