@@ -20,6 +20,11 @@ evalexpr = "12.0.2"
 # code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
 web-sys = { version = "0.3.77", features = ["console"] }
+# getrandom = { version = "0.3.1", features = ["js-sys"] }
+rand = "0.9.0"
+nalgebra = "0.33.2"
+# rapier2d-f64 = { version = "0.23.1", features = ["wasm-bindgen"] }
+rapier2d-f64 = "0.23.1"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"
