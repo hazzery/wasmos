@@ -12,14 +12,4 @@ impl Coordinate {
     pub fn new(x: f64, y: f64) -> Coordinate {
         Coordinate { x, y }
     }
-
-    #[wasm_bindgen(getter)]
-    pub fn x(&self) -> f64 {
-        self.x
-    }
-
-    #[wasm_bindgen(getter)]
-    pub fn y(&self) -> f64 {
-        self.y
-    }
 }
