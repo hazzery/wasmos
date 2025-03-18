@@ -103,6 +103,6 @@ fn main() {
         );
 
         let ball_body = &rigid_body_set[ball_body_handle];
-        console::log_1(format!(r"Ball altitude: {}", ball_body.translation().y).into());
+        console::log_1(&format!(r"Ball altitude: {}", ball_body.translation().y).into());
     }
 }
