@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 
 interface InputBarProps {
-  onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => void
+  onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => void,
 }
 
 function InputBar({ onChangeCallback }: InputBarProps) {
