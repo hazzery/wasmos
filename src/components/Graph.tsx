@@ -1,6 +1,7 @@
 import Paper from '@mui/material/Paper';
 import { ChartContainer } from '@mui/x-charts/ChartContainer';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { ScatterPlot } from '@mui/x-charts';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { LineSeriesType } from '@mui/x-charts/models/seriesType/line';
 import * as React from 'react';
@@ -52,13 +53,15 @@ function Graph() {
           // xAxis={[{ label: "x", min: -50, max: 50, data: Array(100) }]}
           // yAxis={[{ label: "y", min: 0, max: 100 }]}
           // grid={{ vertical: true, horizontal: true }}
-        // sx={{
-        //   [`.${axisClasses.left} .${axisClasses.label}`]: {
-        //     transform: 'translate(-10px, 0)',
-        //   },
-        // }}
-        />
-      </Paper>
+          // sx={{
+          //   [`.${axisClasses.left} .${axisClasses.label}`]: {
+          //     transform: 'translate(-10px, 0)',
+          //   },
+          // }}
+        >
+          <ScatterPlot />
+        </ChartContainer>
+      </Paper >
     </>
   );
 }
