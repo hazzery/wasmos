@@ -24,9 +24,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="static">
-        <h1>Wasmos</h1>
-      </AppBar>
+      {/* <AppBar position="static"> */}
+      {/*   <h1>Wasmos</h1> */}
+      {/* </AppBar> */}
       <Box
         position="absolute"
         top={0}
