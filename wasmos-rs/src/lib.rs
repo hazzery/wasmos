@@ -32,21 +32,6 @@ fn do_the_math(equation: &str) -> Result<Vec<Coordinate>, evalexpr::EvalexprErro
 }
 
 #[wasm_bindgen]
-pub fn get_ball_spawn_coordinates() -> Coordinate {
-    #[allow(clippy::cast_precision_loss)]
-    let upper_limit = GRAPH_RESOLUTION as f64 / 2.0;
-    Coordinate {
-        x: rand::random_range(-upper_limit..upper_limit),
-        y: 100.0,
-    }
-}
-
-#[wasm_bindgen]
-pub fn update_ball_coordinates() {
-    let ball_coordinates = get_ball_spawn_coordinates();
-}
-
-#[wasm_bindgen]
 pub fn compute(equation: &str) -> Vec<Coordinate> {
     match do_the_math(equation) {
         Ok(points) => points,
@@ -57,7 +42,13 @@ pub fn compute(equation: &str) -> Vec<Coordinate> {
     }
 }
 
-fn main() {
+#[wasm_bindgen]
+pub fn update_ball_coordinates() {
+}
+
+
+#[wasm_bindgen]
+pub fn main() {
     let mut rigid_body_set = RigidBodySet::new();
     let mut collider_set = ColliderSet::new();
 
