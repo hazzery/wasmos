@@ -35,6 +35,7 @@ function App() {
         margin="1vh"
         sx={{
           display: "flex",
+          columnGap: "1vh",
         }}
       >
         <Graph></Graph>
