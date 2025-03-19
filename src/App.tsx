@@ -1,59 +1,46 @@
-import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import { ScatterChart } from '@mui/x-charts/ScatterChart';
-import { ScatterSeriesType } from '@mui/x-charts/models/seriesType/scatter';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import * as React from 'react';
 
-import { compute } from "../public/wasm/wasmos.js";
 
-import { Box } from '@mui/material';
 import './App.css';
-import InputBar from './components/InputBar.js';
+import Graph from './components/Graph';
 
 function App() {
-  const [series, setSeries] = React.useState<Omit<ScatterSeriesType, "type">[]>([]);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-  function graph(expression: string, index: number) {
-    let coordinates = expression !== "" ? compute(expression) : [];
-
-    setSeries(previousSeries => {
-      let newSeries = [...previousSeries];
-      newSeries[index] = {
-        label: `Series ${series.length}`,
-        data: coordinates.map((coordinate, index) => ({ x: coordinate.x, y: coordinate.y, id: index })),
-      };
-
-      return newSeries;
-    });
-  }
-
-
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
   return (
-    <>
-      <h1>Wasmos</h1>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="static">
+        <h1>Wasmos</h1>
+      </AppBar>
       <Box
+        position="absolute"
+        top={0}
+        left={0}
+        height="98vh"
+        margin="1vh"
         sx={{
           display: "flex",
         }}
       >
-        <InputBar
-          onChangeCallback={(event, index) => graph(event.target.value, index)}
-        ></InputBar>
-        <ScatterChart
-          series={series}
-          xAxis={[{ label: "x" }]}
-          yAxis={[{ label: "y" }]}
-          grid={{ vertical: true, horizontal: true }}
-          sx={{
-            [`.${axisClasses.left} .${axisClasses.label}`]: {
-              transform: 'translate(-10px, 0)',
-            },
-          }}
-          width={900}
-          height={600}
-        />
+        <Graph></Graph>
       </Box >
-    </>
+    </ThemeProvider>
   )
 }
 
-export default App
+export default App;
