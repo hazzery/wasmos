@@ -40,6 +40,8 @@ function InputBar({ onChangeCallback }: InputBarProps) {
           flexDirection: "column",
           rowGap: "10px",
           padding: "10px",
+          overflow: "scroll",
+          minWidth: "200px",
         }}
       >
         {inputs}

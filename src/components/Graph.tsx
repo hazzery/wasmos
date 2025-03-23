@@ -10,10 +10,15 @@ import { ScatterSeriesType } from '@mui/x-charts/models/seriesType/scatter.js';
 import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
 import * as React from 'react';
 
-import { compute, Coordinate } from "../../public/wasm/wasmos.js";
+import { compute } from "../../public/wasm/wasmos.js";
 import InputBar from '../components/InputBar.js';
 
-function Graph() {
+interface GraphProps {
+  graphHeight: number,
+  graphWidth: number,
+}
+
+function Graph({ graphWidth, graphHeight }: GraphProps) {
   const [lineSeries, setLineSeries] = React.useState<LineSeriesType[]>([]);
   const [ballSeries, setBallSeries] = React.useState<ScatterSeriesType>({ type: "scatter" });
 
@@ -55,8 +60,8 @@ function Graph() {
       <Paper>
         <ResponsiveChartContainer
           series={[...lineSeries, ballSeries]}
-          width={1649}
-          height={900}
+          width={graphWidth}
+          height={graphHeight}
           xAxis={[{ label: "x", min: -50, max: 50, data: range(-50, 50) }]}
           yAxis={[{ label: "y", min: -50, max: 50 }]}
         >
