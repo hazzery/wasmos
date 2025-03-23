@@ -33,8 +33,8 @@ fn evaluate_expression(equation: &str) -> Result<Vec<Coordinate>, evalexpr::Eval
     Ok(coordinates)
 }
 
-/// Evaluate an expression given by JavaScript, and return result back to
-/// JavaScript.
+/// Evaluate an expression given by JavaScript, and return computed coordinates
+/// back to JavaScript.
 ///
 /// If parsing of string expression is unsuccessful, an error message is logged
 /// to the web console, and an empty vector is returned.
