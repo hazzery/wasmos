@@ -1,6 +1,8 @@
-import * as React from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
+import * as React from 'react';
 
 interface InputBarProps {
   onChangeCallback: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => void,
@@ -41,12 +43,9 @@ function InputBar({ onChangeCallback }: InputBarProps) {
         }}
       >
         {inputs}
-        <TextField
+        <Button
           onClick={newInput}
-          id="disabled-input"
-          label="New expression"
-          variant="outlined"
-        />
+        ><AddIcon /></Button>
       </Paper >
     </>
   );
