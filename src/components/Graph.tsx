@@ -1,17 +1,17 @@
-import Paper from '@mui/material/Paper';
-import { LinePlot, ScatterPlot } from '@mui/x-charts';
-import { ChartsLegend } from '@mui/x-charts/ChartsLegend';
-import { ChartsOnAxisClickHandler } from '@mui/x-charts/ChartsOnAxisClickHandler';
-import { ChartsReferenceLine } from '@mui/x-charts/ChartsReferenceLine';
-import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
-import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
-import { LineSeriesType } from '@mui/x-charts/models/seriesType/line';
-import { ScatterSeriesType } from '@mui/x-charts/models/seriesType/scatter.js';
-import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
+import Paper from "@mui/material/Paper";
+import { LinePlot, ScatterPlot } from "@mui/x-charts";
+import { ChartsLegend } from "@mui/x-charts/ChartsLegend";
+import { ChartsOnAxisClickHandler } from "@mui/x-charts/ChartsOnAxisClickHandler";
+import { ChartsReferenceLine } from "@mui/x-charts/ChartsReferenceLine";
+import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis";
+import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
+import { LineSeriesType } from "@mui/x-charts/models/seriesType/line";
+import { ScatterSeriesType } from "@mui/x-charts/models/seriesType/scatter.js";
+import { ResponsiveChartContainer } from "@mui/x-charts/ResponsiveChartContainer";
 import * as React from 'react';
 
-import { compute } from "../../public/wasm/wasmos.js";
-import InputBar from '../components/InputBar.js';
+import { parse_and_evaluate } from "../../public/wasm/wasmos.js";
+import InputBar from "../components/InputBar.tsx";
 
 interface GraphProps {
   graphHeight: number,
@@ -27,7 +27,7 @@ function Graph({ graphWidth, graphHeight }: GraphProps) {
   }
 
   function graph(expression: string, index: number) {
-    let coordinates = expression !== "" ? compute(expression) : [];
+    let coordinates = expression !== "" ? parse_and_evaluate(expression) : [];
 
     setLineSeries(previousLineSeries => {
       let newSeries = [...previousLineSeries];
