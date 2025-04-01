@@ -78,8 +78,8 @@ function Axes({ data }: AxesProps) {
 
   function draw(context: CanvasRenderingContext2D) {
     if (data.length > 0) {
-      context.save();
       context.restore();
+      context.save();
       context.strokeStyle = "#ff0000";
 
       context.beginPath();
