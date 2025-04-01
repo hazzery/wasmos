@@ -6,12 +6,12 @@ interface AxesProps {
 }
 
 function Axes({ data }: AxesProps) {
-  let [xPadding] = React.useState<number>(0);
-  let [yPadding] = React.useState<number>(0);
-  let [maxX] = React.useState<number>(50);
-  let [maxY] = React.useState<number>(50);
-  let [xTickStep] = React.useState<number>(5);
-  let [yTickStep] = React.useState<number>(5);
+  const [xPadding] = React.useState<number>(0);
+  const [yPadding] = React.useState<number>(0);
+  const [maxX] = React.useState<number>(50);
+  const [maxY] = React.useState<number>(50);
+  const [xTickStep] = React.useState<number>(5);
+  const [yTickStep] = React.useState<number>(5);
 
   /**
    * Get the X ordinate of the pixel at X value `val`.
